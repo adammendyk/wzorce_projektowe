@@ -22,3 +22,15 @@ sprawdzić metody klasy i metody statyczne
 # print(jack.foo())
 
 # # ---
+
+from functools import namedtuple
+
+Point = namedtuple('Point', ['x', 'y', 'z'])
+
+p = Point(x=1, y=2, z=1)
+
+print(p.x)
+print(p.y)
+print(p.z)
+
+# # ---
