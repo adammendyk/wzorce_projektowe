@@ -13,6 +13,10 @@ class Staropramen(Beer):
     pass
 
 
+class Komes(Beer):
+    pass
+
+
 class Snack(metaclass=ABCMeta):
 
     @abstractmethod
@@ -30,6 +34,12 @@ class Chips(Snack):
 
     def interact(self, beer: Beer) -> None:
         print(f'Drinking some {beer.__class__.__name__} with chips')
+
+
+class Crostini(Snack):
+
+    def interact(self, beer: Beer) -> None:
+        print(f'Drinking some {beer.__class__.__name__} with crostini')
 
 
 class AbstractShop(metaclass=ABCMeta):
@@ -61,6 +71,15 @@ class CheapShop(AbstractShop):
         return Chips()
 
 
+class LocalShop(AbstractShop):
+
+    def buy_beer(self) -> Beer:
+        return Komes()
+
+    def buy_snack(self) -> Snack:
+        return Crostini()
+
+
 def main():
     expensive_shop = ExpensiveShop()
     beer = expensive_shop.buy_beer()
@@ -70,6 +89,11 @@ def main():
     cheap_shop = CheapShop()
     snack = cheap_shop.buy_snack()
     beer = cheap_shop.buy_beer()
+    snack.interact(beer)
+
+    local_shop = LocalShop()
+    snack = local_shop.buy_snack()
+    beer = local_shop.buy_beer()
     snack.interact(beer)
 
 

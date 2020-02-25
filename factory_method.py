@@ -35,6 +35,12 @@ class OrdinaryMazeGame(MazeGame):
         return OrdinaryRoom()
 
 
+class DarkMazeGame(MazeGame):
+
+    def make_room(self):
+        return DarkRoom()
+
+
 class Room(ABC):
     def __init__(self):
         self.connected_rooms = []
@@ -53,8 +59,16 @@ class OrdinaryRoom(Room):
         return "Ordinary room"
 
 
+class DarkRoom(Room):
+    def __str__(self):
+        return "Dark room"
+
+
 ordinaryGame = OrdinaryMazeGame()
 ordinaryGame.play()
 
 magicGame = MagicMazeGame()
+magicGame.play()
+
+darkgame = DarkMazeGame()
 magicGame.play()
